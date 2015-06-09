@@ -54,17 +54,27 @@ def new_hand(game, turn_owner)
   puts
   if turn_owner == "Player"
     print "Hit or stand (H/S): "
-    response = gets.chomp
-
-    puts
-    if response.upcase == "H"
-      card = game.deal_card
-      puts game.view_dealt_card("#{turn_owner}", card)
-      ranks << build_hand(card)
-      game.remove_first_card
-      puts game.display_score("#{turn_owner}", game.score(hand))
+    response = gets.chomp.upcase
+    until response == "S" do
+      puts
+      if response == "H"
+        card = game.deal_card
+        puts game.view_dealt_card("#{turn_owner}", card)
+        ranks << build_hand(card)
+        game.remove_first_card
+        puts game.display_score("#{turn_owner}", game.score(hand))
+        puts
+        print "Hit or stand (H/S): "
+        response = gets.chomp.upcase
+      end
     end
-
+  else
+    card = game.deal_card
+    puts game.view_dealt_card("#{turn_owner}", card)
+    ranks << build_hand(card)
+    game.remove_first_card
+    puts game.display_score("#{turn_owner}", game.score(hand))
+    puts
   end
 end
 
