@@ -6,6 +6,7 @@ require "pry"
 
 RSpec.describe Game do
   let(:game) { Game.new }
+  let(:hand) { Hand.new }
   let(:cards) { game.deck.cards }
   let(:deck) { game.deck }
 
@@ -26,7 +27,7 @@ RSpec.describe Game do
   describe "#view_dealt_card" do
     it "returns string of turn_owner\'s dealt card" do
       dealt_card_info = "Player was dealt #{game.deal_card}"
-      expect(game.view_dealt_card("Player")).to eq(dealt_card_info)
+      expect(game.view_dealt_card("Player", game.deal_card)).to eq(dealt_card_info)
     end
   end
 
@@ -43,6 +44,23 @@ RSpec.describe Game do
       it "returns a number" do
         game.remove_first_card
         expect(game.num_of_cards).to eq(51)
+      end
+    end
+  end
+
+  describe "#display_score" do
+    it "returns a string of the turn_owner\'s hand ie score" do
+      hand.current_ranks << 9 << 3
+      string = "Dealer score: 12"
+      expect(game.display_score("Dealer", game.score(hand))).to eq(string)
+    end
+  end
+
+  describe "#score" do
+    context "if cards are non face or ace cards" do
+      it "returns a number for all cards in turn_owner\'s hand" do
+        hand.current_ranks << 9 << 3
+        expect(game.score(hand)).to eq(12)
       end
     end
   end

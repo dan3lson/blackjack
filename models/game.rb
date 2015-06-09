@@ -17,7 +17,7 @@ class Game
     "#{first_card.rank}#{first_card.suit}"
   end
 
-  def view_dealt_card(turn_owner)
+  def view_dealt_card(turn_owner, deal_card)
     "#{turn_owner} was dealt #{deal_card}"
   end
 
@@ -29,10 +29,11 @@ class Game
     cards.count
   end
 
-  
-
-  def hit_or_stand
-    # decision = gets.chomp
+  def display_score(turn_owner, score)
+    "#{turn_owner} score: #{score}"
   end
 
+  def score(hand)
+    hand.current_ranks.flatten.reduce(:+)
+  end
 end

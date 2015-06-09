@@ -81,10 +81,4 @@ RSpec.describe Card do
       end
     end
   end
-
-  describe "#rank_to_i" do
-    it "returns the rank as an integer" do
-      expect(card.rank_to_i(rank).class).to eq(Fixnum)
-    end
-  end
 end

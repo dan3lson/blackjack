@@ -1,5 +1,4 @@
 class Card
-
   attr_reader :rank, :suit
 
   def initialize(rank, suit)
@@ -13,9 +12,5 @@ class Card
 
   def ace?
     rank == "A"
-  end
-
-  def rank_to_i(rank)
-    rank.to_i
   end
 end
