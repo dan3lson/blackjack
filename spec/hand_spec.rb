@@ -11,31 +11,14 @@ RSpec.describe Hand do
   let(:dealer_hand) { hand.dealer_hand }
 
   describe "#initialize" do
-    context "four cards are dealt" do
-      it "returns count of two cards given to player" do
-        expect(player_hand.count).to eq(2)
-      end
-      it "returns count of two cards given to dealer" do
-        expect(dealer_hand.count).to eq(2)
-      end
-    end
-  end
-
-  describe "#remove_first_four_cards" do
-    it "returns a deck of 48 cards" do
-      hand.remove_first_four_cards(deck)
-      expect(cards.count).to eq(48)
+    it "returns an empty array of hashes for future cards" do
+      expect(hand.current_hand).to eq([{}])
     end
   end
 
   describe "#score" do
-    it "counts score for the first hand" do
-      total = 0
-      player_hand.each do |card|
-        total += card.rank_to_i(card.rank)
-        #binding.pry
-      end
-      expect(hand.score).to eq(total)
+    xit "counts score for the current hand" do
+      expect().to eq()
     end
   end
 end
